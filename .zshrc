@@ -409,7 +409,7 @@ then
 		# Find package containing file
 		alias kf="sudo pkgfile"
 	fi
-elif [ "$DISTRO" = "Fedora" || "$DISTRO" = "CentOS" ]
+elif [ "$DISTRO" = "Fedora" ] || [ "$DISTRO" = "CentOS" ]
 	then
 	# Install package
 	alias ki="sudo yum install"
