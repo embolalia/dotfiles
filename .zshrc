@@ -203,6 +203,15 @@ export MAIL="~/.mail"
 
 export TZ="America/New_York"
 
+if [ -x "$(which fpaste)" ]
+then
+	export PASTEBIN="fpaste"
+elif [ -x "$(which pastebinit)" ]
+then
+	export PASTEBIN="pastebinit"
+else
+	export PASTEBIN="echo \"You dont have a pastebin!\""
+fi
 
 # ------------------------------------------------------------------------------
 # - prompt (environmental variables) -
@@ -253,6 +262,7 @@ alias yours="sudo find . -perm -u+x -exec chmod a+x {} \; && sudo find . -perm -
 # - shortcuts to existing commands (aliases) -
 # ------------------------------------------------------------------------------
 
+alias pbin="$PASTEBIN"
 alias fman="$FILEMAN ."
 alias mc="java -jar ~/prog/minecraft/minecraft.jar&exit"
 alias py="python"
