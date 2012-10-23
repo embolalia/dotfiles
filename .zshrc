@@ -213,6 +213,15 @@ else
 	export PASTEBIN="echo \"You dont have a pastebin!\""
 fi
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    export PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/lib" ] ; then
+    export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+fi
+
 # ------------------------------------------------------------------------------
 # - prompt (environmental variables) -
 # ------------------------------------------------------------------------------
