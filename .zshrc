@@ -470,6 +470,15 @@ then # none of these are tested, just gathered around
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# pip aliases
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+alias pki="sudo pip install"
+alias pkr="sudo pip uninstall"
+alias pks="pip search"
+alias pkl="pip freeze | grep "
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # global aliases
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
