@@ -488,6 +488,7 @@ alias -g B="&exit"
 alias -g H="|head"
 alias -g T="|tail"
 alias -g V="|vim -m -c 'set nomod' -"
+alias -g P="|& $PASTEBIN"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # run-with-command
