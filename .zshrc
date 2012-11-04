@@ -203,10 +203,10 @@ export MAIL="~/.mail"
 
 export TZ="America/New_York"
 
-if [ -x "$(which fpaste)" ]
+if [ -x "$(which fpaste 2> /dev/null)" ]
 then
 	export PASTEBIN="fpaste"
-elif [ -x "$(which pastebinit)" ]
+elif [ -x "$(which pastebinit 2> /dev/null)" ]
 then
 	export PASTEBIN="pastebinit"
 else
