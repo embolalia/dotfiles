@@ -206,11 +206,14 @@ export TZ="America/New_York"
 if [ -x "$(which fpaste 2> /dev/null)" ]
 then
 	export PASTEBIN="fpaste"
+	export PASTEBINF="fpaste -l"
 elif [ -x "$(which pastebinit 2> /dev/null)" ]
 then
 	export PASTEBIN="pastebinit"
+	export PASTEBINF="pastebinit -f"
 else
 	export PASTEBIN="echo \"You dont have a pastebin!\""
+	export PASTEBINF="echo \"You dont have a pastebin!\""
 fi
 
 # set PATH so it includes user's private bin if it exists
@@ -272,6 +275,7 @@ alias yours="sudo find . -perm -u+x -exec chmod a+x {} \; && sudo find . -perm -
 # ------------------------------------------------------------------------------
 
 alias pbin="$PASTEBIN"
+alias pbinf="$PASTEBINF"
 alias fman="$FILEMAN ."
 alias mc="java -jar ~/prog/minecraft/minecraft.jar&exit"
 alias py="python"
@@ -489,6 +493,7 @@ alias -g H="|head"
 alias -g T="|tail"
 alias -g V="|vim -m -c 'set nomod' -"
 alias -g P="|& $PASTEBIN"
+alias -g PF="| $PASTEBINF"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # run-with-command
