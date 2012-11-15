@@ -42,6 +42,10 @@ set ruler
 set softtabstop=4
 " (Auto)indents are four characters wide.
 set shiftwidth=4
+" Set a vertical ruler for line length
+set colorcolumn=80
+" The default color is hideous. Make it dark gray.
+highlight ColorColumn ctermbg=8
 " If run in a terminal, set the terminal title.
 set title
 " Enable wordwrap.
