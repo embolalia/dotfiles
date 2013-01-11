@@ -15,6 +15,11 @@
 set nocompatible
 " When creating a new line, set indentation same as previous line.
 set autoindent
+set smartindent
+" Use spaces instead of tabs
+set expandtab
+" automatically turn tabs into spaces in .py files
+au Filetype python retab!
 " Make i_backspace act as it does in most other programs.
 set backspace=2
 " Folding should be set manually, never automatically.
@@ -36,12 +41,6 @@ set smartcase
 set number
 " Always show cursor position in statusline.
 set ruler
-" Tabs are four characters wide.  Note that this is primarily useful for those
-" who prefer tabs for indentation rather than spaces which act like tabs.  If
-" you prefer indenting with spaces, look into 'softtabstop'.
-set softtabstop=4
-" (Auto)indents are four characters wide.
-set shiftwidth=4
 " Set a vertical ruler for line length
 set colorcolumn=80
 " The default color is hideous. Make it dark gray.
@@ -60,8 +59,6 @@ syntax on
 set shortmess+=I
 " Enable filetype-specific plugins.
 filetype plugin on
-" Utilize filetype-specific automatic indentation.
-filetype indent on
 
 " ==============================================================================
 " = mappings                                                                   =
