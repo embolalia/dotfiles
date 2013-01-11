@@ -291,6 +291,8 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias vv="cd /dev/shm/"
+alias pw="cd ~/prog/willie"
+alias prog="cd ~/prog"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Networking, ssh, remote drives, etc.
@@ -508,8 +510,8 @@ alias -s edu=$BROWSER
 alias -s txt=$EDITOR
 alias -s tex=$EDITOR
 alias -s pdf=$PDFREADER
-alias -s gz=tar -xzvf
-alias -s bz2=tar -xjvf
+alias -s gz="tar -xzvf "
+alias -s bz2="tar -xjvf "
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # nocorrect
