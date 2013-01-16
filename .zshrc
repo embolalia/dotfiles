@@ -300,6 +300,7 @@ alias prog="cd ~/prog"
 
 alias hbd="sudo mount 192.168.1.22:/files /h"
 alias cse="ssh -X powelle@stdlinux.cse.ohio-state.edu"
+alias aws="ssh -X edward@54.235.244.4"
 alias osc="ssh -X embolalia@opensource.osu.edu"
 alias chunk="ssh -X embo@66.172.33.23"
 alias desktop="ssh -X embo@embolalia.net -p 1991"
