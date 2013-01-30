@@ -170,9 +170,19 @@ export SHELL="/bin/zsh"
 
 # Set the default text editor.
 export EDITOR="vim"
+export GEDITOR="gedit"
 
 # Set the default file manager.
 export FILEMAN="nautilus"
+if [ -x "$(which nemo 2> /dev/null)" ]
+then
+    export FILEMAN="nemo"
+elif [ -x "$(which nautilus 2> /dev/null)" ]
+then
+    export FILEMAN="nautilus"
+else
+    export FILEMAN="echo \"No File Manager!\""
+fi
 
 # if in X11, set firefox as browser
 # else, set elinks as browser
@@ -276,7 +286,7 @@ alias yours="sudo find . -perm -u+x -exec chmod a+x {} \; && sudo find . -perm -
 
 alias pbin="$PASTEBIN"
 alias pbinf="$PASTEBINF"
-alias fman="$FILEMAN ."
+alias fman="$FILEMAN . 2> /dev/null"
 alias mc="java -jar ~/prog/minecraft/minecraft.jar&exit"
 alias py="python"
 alias py2="python2.7"
