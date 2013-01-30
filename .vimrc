@@ -16,10 +16,16 @@ set nocompatible
 " When creating a new line, set indentation same as previous line.
 set autoindent
 set smartindent
+" Use 4-space indents
+set shiftwidth=4
+set tabstop=4
 " Use spaces instead of tabs
 set expandtab
 " automatically turn tabs into spaces in .py files
 au Filetype python retab!
+" Turn on spellcheck for tex and ReST
+au Filetype tex set spell
+au Filetype rst set spell
 " Make i_backspace act as it does in most other programs.
 set backspace=2
 " Folding should be set manually, never automatically.
@@ -46,7 +52,7 @@ set colorcolumn=80
 " The default color is hideous. Make it dark gray.
 highlight ColorColumn ctermbg=8
 " If run in a terminal, set the terminal title.
-set title
+" set title
 " Enable wordwrap.
 set textwidth=0 wrap linebreak
 " Enable unicode characters.  This is needed for 'listchars' below.
