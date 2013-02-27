@@ -233,6 +233,10 @@ fi
 
 if [ -d "$HOME/lib" ] ; then
     export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+    if [ -d "$HOME/lib/python2.7/site-packages" ] ; then
+        export PYTHONPATH=/home/embolalia/lib/python2.7/site-packages:$PYTHONPATH
+        PIPLOCAL=1
+    fi
 fi
 
 # ------------------------------------------------------------------------------
@@ -490,8 +494,13 @@ fi
 # pip aliases
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-alias pki="sudo pip install"
-alias pkr="sudo pip uninstall"
+if [ $PIPLOCAL = 1 ] ; then
+    alias pki="pip install --install-option=\"--prefix=$HOME\""
+    alias pkr="pip uninstall"
+else
+    alias pki="sudo pip install"
+    alias pkr="sudo pip uninstall"
+fi
 alias pks="pip search"
 alias pkl="pip freeze | grep "
 
