@@ -143,6 +143,17 @@ cds() {
 	cd $1 && ls
 }
 
+say() {
+    if [[ "${1}" =~ -[a-z]{2} ]]
+    then
+        local lang=${1#-}
+        local text="${*#$1}"
+    else local lang=${LANG%_*}
+        local text="$*"
+    fi
+    mplayer "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &> /dev/null 
+}
+
 # ==============================================================================
 # = key bindings =
 # ==============================================================================
@@ -257,7 +268,7 @@ autoload -U colors && colors
 
 if [[ "$EUID" == "0" ]]; then
     export PROMPT="%{$fg_bold[blue]%}[%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg[green]%}%m%{$fg_bold[blue]%}] [%{$reset_color%}%{$fg[green]%}%~%{$fg_bold[blue]%}]%{$reset_color%}
-$LOCATION_SYMBOL\# "
+$LOCATION_SYMBOL# "
 else
     export PROMPT="%{$fg_bold[blue]%}[%{$fg_bold[green]%}%n%{$reset_color%}%{$fg[green]%}@%m%{$fg_bold[blue]%}] [%{$reset_color%}%{$fg[green]%}%~%{$fg_bold[blue]%}]%{$reset_color%}
 $LOCATION_SYMBOL\$ "
