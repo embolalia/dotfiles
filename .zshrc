@@ -505,7 +505,7 @@ fi
 # pip aliases
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-if [ $PIPLOCAL = 1 ] ; then
+if [ $PIPLOCAL -e 1 ] ; then
     alias pki="pip install --install-option=\"--prefix=$HOME\""
     alias pkr="pip uninstall"
 else
