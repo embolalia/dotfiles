@@ -114,7 +114,7 @@ nnoremap <space>N H$Nzb
 augroup python
     autocmd!
     " 'Compile' with pep8.
-    autocmd Filetype python setlocal makeprg=pep8
+    autocmd Filetype python setlocal makeprg=pep8\ --ignore=E501
     autocmd Filetype python setlocal errorformat=%f:%l:%c:%m
     " Execute.
     autocmd Filetype python nnoremap <buffer> <space>r :cd %:p:h<cr>:!python %<cr>
