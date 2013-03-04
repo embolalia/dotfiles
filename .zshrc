@@ -347,7 +347,7 @@ alias cl="clive --format=best"
 # git
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-alias gc="git commit -a -v"
+alias gc="git commit -m"
 alias gb="git branch"
 alias gl="git log --graph --color | less -R"
 alias gr="git reset --hard HEAD"
