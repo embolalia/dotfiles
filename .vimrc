@@ -60,6 +60,9 @@ highlight ColorColumn ctermbg=8
 set textwidth=0 wrap linebreak
 " Enable unicode characters.  This is needed for 'listchars' below.
 set encoding=utf-8
+" Display special characters for certain whitespace situations.
+set list
+set listchars=tab:>·,trail:·,extends:…,precedes:…,nbsp:&
 " Disable capitalization check in spellcheck.
 set spellcapcheck=""
 " Enable syntax highlighting.
