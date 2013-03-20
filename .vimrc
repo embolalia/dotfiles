@@ -11,6 +11,9 @@
 " These are general shell settings that don't fit well into any of the
 " catagories used below.  Order may matter for some of these.
 
+" Enable Pathogen
+execute pathogen#infect()
+
 " Disable vi compatibilty restrictions.
 set nocompatible
 " When creating a new line, set indentation same as previous line.
