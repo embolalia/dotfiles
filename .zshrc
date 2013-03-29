@@ -302,6 +302,7 @@ alias yours="sudo find . -perm -u+x -exec chmod a+x {} \; && sudo find . -perm -
 alias pbin="$PASTEBIN"
 alias pbinf="$PASTEBINF"
 alias fman="$FILEMAN . 2> /dev/null"
+alias len="wc -l"
 alias mc="java -jar ~/prog/minecraft/minecraft.jar&exit"
 alias py="python"
 alias py2="python2.7"
