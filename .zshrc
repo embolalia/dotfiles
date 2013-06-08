@@ -299,6 +299,7 @@ alias yours="sudo find . -perm -u+x -exec chmod a+x {} \; && sudo find . -perm -
 # - shortcuts to existing commands (aliases) -
 # ------------------------------------------------------------------------------
 
+alias ytdl="youtube-dl -o \"%(uploader)s-%(stitle)s.%(ext)s\""
 alias pbin="$PASTEBIN"
 alias pbinf="$PASTEBINF"
 alias fman="$FILEMAN . 2> /dev/null"
