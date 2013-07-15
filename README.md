@@ -11,3 +11,7 @@ Included stuff
 --------------
 This repo contains copies of [Pathogen](http://www.vim.org/scripts/script.php?script_id=2332) and
 [vim-markdown](https://github.com/hallison/vim-markdown).
+
+The Python 2 and 3 standard libs are included as a submodule. Run the command
+`vim -c "helptags . | q"` in the `.vim/bundle/py2stdlib` and
+`.vim/bundle/py3stdlib` folders to make them available.
