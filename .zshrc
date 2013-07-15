@@ -299,6 +299,11 @@ alias yours="sudo find . -perm -u+x -exec chmod a+x {} \; && sudo find . -perm -
 # - shortcuts to existing commands (aliases) -
 # ------------------------------------------------------------------------------
 
+if [ -x "$(which gvim 2> /dev/null)" ]
+then
+    alias vim="gvim -v"
+fi
+
 alias ytdl="youtube-dl -o \"%(uploader)s-%(stitle)s.%(ext)s\""
 alias pbin="$PASTEBIN"
 alias pbinf="$PASTEBINF"
