@@ -347,7 +347,7 @@ alias la="ls -A --color=auto -h --group-directories-first"
 alias ll="ls -lA --color=auto -h --group-directories-first"
 alias du="du -hs"
 alias df="df -h"
-alias grep="grep -IR --color=yes -D skip --exclude-dir=.git"
+alias grep="grep -I --color=yes -D skip --exclude-dir=.git"
 alias cl="clive --format=best"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
