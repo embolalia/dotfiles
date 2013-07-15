@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/py3stdlib"]
 	path = .vim/bundle/py3stdlib
 	url = https://github.com/vim-scripts/Python-3.x-Standard-Library-Reference.git
+[submodule ".vim/bundle/vim-numbertoggle"]
+	path = .vim/bundle/vim-numbertoggle
+	url = https://github.com/jeffkreeftmeijer/vim-numbertoggle
