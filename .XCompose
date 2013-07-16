@@ -2,3 +2,5 @@ include "%L"
 <Multi_key> <l> <o> <d>                                 : "ಠ_ಠ"         # LOOK OF DISAPPROVAL
 <Multi_key> <p> <i>                                     : π             # pi
 <Multi_key> <P> <I>                                     : Π             # pi(capital)
+<Multi_key> <~> <=>                                     : ≈             # Approx. equal
+<Multi_key> <=> <~>                                     : ≈             # Approx. equal (done the other way)
