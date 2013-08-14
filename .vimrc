@@ -31,8 +31,8 @@ au Filetype tex set spell
 au Filetype rst set spell
 " Make i_backspace act as it does in most other programs.
 set backspace=2
-" Folding should be set manually, never automatically.
-set foldmethod=manual
+" We can probably be safe folding by indent.
+set foldmethod=indent
 " Do not fold anything by default.
 set foldlevel=999
 " Allow modified/unsaved buffers in the background.
