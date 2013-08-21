@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/vim-markdown"]
 	path = .vim/bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
+[submodule ".vim/bundle/detectindent"]
+	path = .vim/bundle/detectindent
+	url = https://github.com/ciaranm/detectindent

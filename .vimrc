@@ -18,14 +18,18 @@ execute pathogen#infect()
 set nocompatible
 " When creating a new line, set indentation same as previous line.
 set autoindent
-set smartindent
+" Try to use filetype indentation
+if has("autocmd")
+    filetype plugin indent on
+endif
 " Use 4-space indents
 set shiftwidth=4
 set tabstop=4
-" Use spaces instead of tabs
-set expandtab
-" automatically turn tabs into spaces in .py files
-au Filetype python retab!
+" Run DetectIndent immediately
+autocmd BufReadPost * :DetectIndent
+" Prefer 4 spaces if we can't tell what it is
+let g:detectindent_preferred_expandtab = 1
+let g:detectindent_preferred_indent = 4
 " Turn on spellcheck for tex and ReST
 au Filetype tex set spell
 au Filetype rst set spell
