@@ -19,6 +19,11 @@ compinit
 # = general settings =
 # ==============================================================================
 
+# Include local .zshrc if extant
+if [[ -f "$HOME/.zshrc.local" ]] then
+    source "$HOME/.zshrc.local"
+fi
+
 # cd into directory just by directory name
 setopt autocd
 
