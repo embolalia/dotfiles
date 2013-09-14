@@ -6,7 +6,7 @@
 HISTFILE=~/.history
 HISTSIZE=1000
 SAVEHIST=1000
-setopt appendhistory
+setopt appendhistory share_history
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/embo/.zshrc'
@@ -339,9 +339,9 @@ alias hbd="sudo mount 192.168.1.22:/files /h"
 alias cse="ssh -X powelle@stdlinux.cse.ohio-state.edu"
 alias aws="ssh -X edward@54.235.244.4"
 alias osc="ssh -X embolalia@opensource.osu.edu"
-alias chunk="ssh -X embo@66.172.33.23"
-alias desktop="ssh -X embo@embolalia.net -p 1991"
-alias tunnel="ssh -R 1991:localhost:22 tunnel@embolalia.net"
+alias chunk="ssh -X embo@76.74.177.239"
+alias desktop="ssh -X embo@embolalia.com -p 1991"
+alias tunnel="ssh -R 1991:localhost:22 tunnel@embolalia.com"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # set default flags
