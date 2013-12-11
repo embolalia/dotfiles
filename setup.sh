@@ -16,7 +16,14 @@ cd .dotfiles
 
 ./make_symlinks.sh
 
-sudo $INSTALLER install -y zsh tmux vim $PASTER
+git submodule init
+git submodule update
 
-USER=$(whoami)
-sudo chsh -s /bin/zsh $USER
+if [ sudo true ]; then
+	sudo $INSTALLER install -y zsh tmux vim $PASTER
+
+	USER=$(whoami)
+	sudo chsh -s /bin/zsh $USER
+elif [ -n $(which zsh) ]; then
+	chsh -s /bin/zsh
+fi
