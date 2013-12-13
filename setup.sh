@@ -19,7 +19,7 @@ cd .dotfiles
 git submodule init
 git submodule update
 
-if [ sudo true ]; then
+if [ "sudo true" ]; then
 	sudo $INSTALLER install -y zsh tmux vim $PASTER
 
 	USER=$(whoami)
