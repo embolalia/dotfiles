@@ -6,7 +6,7 @@
 HISTFILE=~/.history
 HISTSIZE=1000
 SAVEHIST=1000
-setopt appendhistory share_history
+setopt appendhistory
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/embo/.zshrc'
@@ -46,12 +46,6 @@ setopt nobgnice
 # terminal flow so that it can be used in other programs (such as Vim).
 setopt noflowcontrol
 stty -ixon
-
-# Do not kill background processes when closing the shell. 
-setopt nohup
-
-# Do not warn about closing the shell with background jobs running.
-setopt nocheckjobs
 
 # don't record repeated things in history
 setopt histignoredups
@@ -119,23 +113,29 @@ zstyle ':completion:history-words:*' menu yes
 # The ZLE widges are all followed by "zle -<MODE> <NAME>" and bound below in
 # the "Key Bindings" section.
 
-# Prepend "sudo" to the command line if it is not already there.
+# Prepend "sudo" to the command line if it is not already there. If it's a vim
+# command, use sudoedit instead.
 prepend-sudo() {
-	if ! echo "$BUFFER" | grep -q "^sudo "
-	then
-		BUFFER="sudo $BUFFER"
-		CURSOR+=5
-	fi
+    if ! echo "$BUFFER" | grep -q "^sudo "
+    then
+        if echo "$BUFFER" | grep -q "^vim "; then
+            BUFFER="sudoedit ${BUFFER:4:${#BUFFER}}"
+            CURSOR+=5
+        else
+            BUFFER="sudo $BUFFER"
+            CURSOR+=5
+        fi
+    fi
 }
 zle -N prepend-sudo
 
 # Prepend "vim" to the command line if it is not already there.
 prepend-vim() {
-	if ! echo "$BUFFER" | grep -q "^vim "
-	then
-		BUFFER="vim $BUFFER"
-		CURSOR+=5
-	fi
+    if ! echo "$BUFFER" | grep -q "^vim "
+    then
+        BUFFER="vim $BUFFER"
+        CURSOR+=5
+    fi
 }
 zle -N prepend-vim
 
@@ -145,7 +145,7 @@ zle -N prepend-vim
 
 # cd into a directory then immediately ls
 cds() {
-	cd $1 && ls
+    cd $1 && ls
 }
 
 say() {
@@ -226,7 +226,6 @@ export EDITOR="vim"
 export GEDITOR="gedit"
 
 # Set the default file manager.
-export FILEMAN="nautilus"
 if [ -x "$(which nemo 2> /dev/null)" ]
 then
     export FILEMAN="nemo"
@@ -240,18 +239,18 @@ fi
 # if in X11, set firefox as browser
 # else, set elinks as browser
 if [[ -z $DISPLAY ]]; then
-	export BROWSER="elinks"
+    export BROWSER="elinks"
 else
-	export BROWSER="firefox"
+    export BROWSER="firefox"
 fi
 
 # If in a terminal that can use 256 colors, ensure TERM reflects that fact.
 if [ "$TERM" = "xterm" ]
 then
-	export TERM="xterm-256color"
+    export TERM="xterm-256color"
 elif [ "$TERM" = "screen" ]
 then
-	export TERM="screen-256color"
+    export TERM="screen-256color"
 fi
 
 # set PDF reader
@@ -268,15 +267,15 @@ export TZ="America/New_York"
 
 if [ -x "$(which fpaste 2> /dev/null)" ]
 then
-	export PASTEBIN="fpaste"
-	export PASTEBINF="fpaste -l"
+    export PASTEBIN="fpaste"
+    export PASTEBINF="fpaste -l"
 elif [ -x "$(which pastebinit 2> /dev/null)" ]
 then
-	export PASTEBIN="pastebinit"
-	export PASTEBINF="pastebinit -f"
+    export PASTEBIN="pastebinit"
+    export PASTEBINF="pastebinit -f"
 else
-	export PASTEBIN="echo \"You dont have a pastebin!\""
-	export PASTEBINF="echo \"You dont have a pastebin!\""
+    export PASTEBIN="echo \"You dont have a pastebin!\""
+    export PASTEBINF="echo \"You dont have a pastebin!\""
 fi
 
 # set PATH so it includes user's private bin if it exists
@@ -358,7 +357,7 @@ alias len="wc -l"
 alias mc="java -jar ~/prog/minecraft/minecraft.jar&exit"
 alias py="python"
 alias py2="python2.7"
-alias py3="python3.2"
+alias py3="python3"
 alias ta="tmux attach"
 alias :wq="exit"
 alias :q="exit"
@@ -417,141 +416,48 @@ alias gull='git pull origin $(git branch | awk '\''/^\*/{print$2}'\'')'
 # package management
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-if [ -f /etc/arch-release ]
-then
-	DISTRO="Arch"
-elif [ -f /etc/slackware-version ]
-then
-	DISTRO="Slackware"
-elif [ -f /etc/gentoo-release ]
-then
-	DISTRO="Gentoo"
-elif [ -f /etc/debian-release ]
-then
-	DISTRO="Debian"
-elif [ -d /etc/linuxmint ]
-then
-	DISTRO="Mint"
-elif [ -f /etc/lsb-release ]
-then
-	DISTRO=$(awk -F= '/DISTRIB_ID/{print$2;exit}' /etc/lsb-release)
-elif [ -f /etc/issue ]
-then
-	DISTRO=$(awk '/[:alpha:]/{print$1;exit}' /etc/issue 2>/dev/null)
-fi
-
-
-if [ "$DISTRO" = "Debian" ] || [ "$DISTRO" = "Ubuntu" ] || [ "$DISTRO" = "Mint" ]
-	then
-	# Install package
-	alias ki="sudo apt-get install"
-	# Remove package
-	alias kr="sudo apt-get --purge remove"
-	# Updated packages
-	alias ku="sudo apt-get update && sudo apt-get upgrade"
-	# List installed packages
-	alias kl="dpkg -l"
-	# Clean up package manager cruft
-	alias kc="sudo apt-get --purge autoremove"
-	# Search for package name in repository
-	alias ks="apt-cache search"
-	# show to which installed package a file Belongs
-	alias kb="dpkg -S"
-	# shoW information about package
-	alias kw="apt-cache show"
-	# Find package containing file
-	alias kf="apt-file search"
-elif [ "$DISTRO" = "Arch" ]
-then
-	if which packer >/dev/null
-	then
-		# Install package
-		alias ki="sudo packer -S"
-		# Remove package
-		alias kr="sudo pacman -R" # packer does not provide -R
-		# Updated packages
-		alias ku="sudo packer -Syu"
-		# List installed packages
-		alias kl="pacman -Q" # packer does not provide -Q
-		# Clean up package manager cruft
-		alias kc='sudo packer -Sc && for PKG in `packer -Qqtd`; do sudo packer -Rs $PKG; done'
-		# Search for package name in repository
-		alias ks="packer -Ss"
-		# show to which installed package a file Belongs
-		alias kb="pacman -Qo"
-		# shoW information about package
-		alias kw="packer -Si"
-		# Find package containing file
-		alias kf="sudo pkgfile"
-	else
-		# Install package
-		alias ki="sudo pacman -S"
-		# Remove package
-		alias kr="sudo pacman -R"
-		# Updated packages
-		alias ku="sudo pacman -Syu"
-		# List installed packages
-		alias kl="pacman -Q"
-		# Clean up package manager cruft
-		alias kc='sudo pacman -Sc && for PKG in `pacman -Qqtd`; do sudo pacman -Rs $PKG; done'
-		# Search for package name in repository
-		alias ks="pacman -Ss"
-		# show to which installed package a file Belongs
-		alias kb="pacman -Qo"
-		# shoW information about package
-		alias kw="pacman -Si"
-		# Find package containing file
-		alias kf="sudo pkgfile"
-	fi
-elif [ "$DISTRO" = "Fedora" ] || [ "$DISTRO" = "CentOS" ]
-	then
-	# Install package
-	alias ki="sudo yum install"
-	# Remove package
-	alias kr="sudo yum remove"
-	# Updated packages
-	alias ku="sudo yum update"
-	# List installed packages
-	alias kl="yum list installed"
-	# Clean up package manager cruft
-	alias kc="sudo yum clean all"
-	# Search for package name in repository
-	alias ks="yum search"
-	# show to which installed package a file Belongs
-	alias kb="rpm -qa"
-	# shoW information about package
-	alias kw="yum info"
-	# Find package containing file
-	alias kf="sudo yum whatprovides"
-elif [ "$DISTRO" = "Slackware" ]
-then
-	# Install package
-	alias ki="sudo slackpkg install"
-	# Remove package
-	alias kr="sudo slackpkg remove"
-	# Updated packages
-	alias ku="sudo slackpkg update && slackpkg install-new && slackpkg upgrade-all"
-	# Search for package name in repository
-	alias ks="sudo slackpkg search"
-elif [ "$DISTRO" = "Gentoo" ]
-then # none of these are tested, just gathered around
-	# Install package
-	alias ki="emerge"
-	# Remove package
-	alias kr="emerge -C"
-	# List installed package
-	alias kl="emerge -ep world"
-	# Clean up package manager cruft
-	alias kc="emerge --depclean"
-	# Search for package name in repository
-	alias ks="emerge --search"
-	# show to which installed package a file Belongs
-	alias kb="equery belongs"
-	# Updated packages
-	alias ku="emerge --update --ask world"
-	alias kU="emerge --update --deep --newuse world"
-	# shoW information about package
-	alias kS="emerge --searchdesc"
+if which yum &>/dev/null || which dnf &>/dev/null; then
+    # Use DNF if we have it, and yum if we don't. The commands are the same for
+    # both.
+    _YUM=$(which dnf 2>/dev/null || which yum 2>/dev/null)
+    # Install package
+    alias ki="sudo $_YUM install"
+    # Remove package
+    alias kr="sudo $_YUM remove"
+    # Updated packages
+    alias ku="sudo $_YUM update"
+    # List installed packages
+    alias kl="$_YUM list installed"
+    # Clean up package manager cruft
+    alias kc="sudo $_YUM clean all"
+    # Search for package name in repository
+    alias ks="$_YUM search"
+    # show to which installed package a file Belongs
+    alias kb="rpm -qa"
+    # shoW information about package
+    alias kw="$_YUM info"
+    # Find package containing file
+    alias kf="sudo $_YUM whatprovides"
+elif which apt-get &>/dev/null
+    then
+    # Install package
+    alias ki="sudo apt-get install"
+    # Remove package
+    alias kr="sudo apt-get --purge remove"
+    # Updated packages
+    alias ku="sudo apt-get update && sudo apt-get upgrade"
+    # List installed packages
+    alias kl="dpkg -l"
+    # Clean up package manager cruft
+    alias kc="sudo apt-get --purge autoremove"
+    # Search for package name in repository
+    alias ks="apt-cache search"
+    # show to which installed package a file Belongs
+    alias kb="dpkg -S"
+    # shoW information about package
+    alias kw="apt-cache show"
+    # Find package containing file
+    alias kf="apt-file search"
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
