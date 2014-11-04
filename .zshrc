@@ -232,6 +232,10 @@ then
 elif [ -x "$(which nautilus 2> /dev/null)" ]
 then
     export FILEMAN="nautilus"
+#TODO is there an open command on non-OSX?
+elif [ -x "$(which open 2> /dev/null)" ]
+then
+    export FILEMAN="open"
 else
     export FILEMAN="echo \"No File Manager!\""
 fi
