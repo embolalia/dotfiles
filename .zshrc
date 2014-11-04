@@ -458,6 +458,25 @@ elif which apt-get &>/dev/null
     alias kw="apt-cache show"
     # Find package containing file
     alias kf="apt-file search"
+elif which brew &> /dev/null; then
+    # Install package
+    alias ki="brew install"
+    # Remove package
+    alias kr="brew uninstall"
+    # Updated packages
+    alias ku="brew update"
+    # List installed packages
+    alias kl="brew list"
+    # Clean up package manager cruft
+    # alias kc=""
+    # Search for package name in repository
+    alias ks="brew search"
+    # show to which installed package a file Belongs
+    # alias kb=""
+    # shoW information about package
+    alias kw="brew info"
+    # Find package containing file
+    # alias kf=""
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
