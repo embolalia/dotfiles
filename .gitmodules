@@ -13,3 +13,6 @@
 [submodule ".vim/bundle/detectindent"]
 	path = .vim/bundle/detectindent
 	url = https://github.com/ciaranm/detectindent
+[submodule ".vim/bundle/vim-coffee-script"]
+	path = .vim/bundle/vim-coffee-script
+	url = git@github.com:kchmck/vim-coffee-script.git
