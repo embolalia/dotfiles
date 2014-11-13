@@ -340,6 +340,9 @@ alias mine="sudo chown -R $(whoami):$(whoami)"
 # allow others to read/execute
 alias yours="sudo find . -perm -u+x -exec chmod a+x {} \; && sudo find . -perm -u+r -exec chmod a+r {} \;"
 
+# Activate the virtualenv for the current Python project
+alias venv="source ./env/bin/activate"
+
 # ------------------------------------------------------------------------------
 # - shortcuts to existing commands (aliases) -
 # ------------------------------------------------------------------------------
