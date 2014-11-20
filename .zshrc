@@ -339,6 +339,9 @@ alias yours="sudo find . -perm -u+x -exec chmod a+x {} \; && sudo find . -perm -
 # Activate the virtualenv for the current Python project
 alias venv="source ./env/bin/activate"
 
+# Remove pyc files
+alias rmpyc="find . -name '*.pyc' -exec rm {} \;"
+
 # ------------------------------------------------------------------------------
 # - shortcuts to existing commands (aliases) -
 # ------------------------------------------------------------------------------
@@ -390,7 +393,7 @@ alias tunnel="ssh -R 1991:localhost:22 tunnel@embolalia.com"
 # set default flags
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-alias ls="ls --color=auto -h --group-directories-first"
+alias ls="ls --color=auto -h --group-directories-first --ignore='*.pyc' --ignore-backups"
 alias la="ls -A --color=auto -h --group-directories-first"
 alias ll="ls -lA --color=auto -h --group-directories-first"
 alias du="du -hs"
