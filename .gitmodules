@@ -1,18 +1,24 @@
 [submodule ".vim/bundle/py2stdlib"]
 	path = .vim/bundle/py2stdlib
 	url = https://github.com/vim-scripts/Python-2.x-Standard-Library-Reference.git
+	branch = master
 [submodule ".vim/bundle/py3stdlib"]
 	path = .vim/bundle/py3stdlib
 	url = https://github.com/vim-scripts/Python-3.x-Standard-Library-Reference.git
+	branch = master
 [submodule ".vim/bundle/vim-numbertoggle"]
 	path = .vim/bundle/vim-numbertoggle
 	url = https://github.com/jeffkreeftmeijer/vim-numbertoggle
+	branch = master
 [submodule ".vim/bundle/vim-markdown"]
 	path = .vim/bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
+	branch = master
 [submodule ".vim/bundle/detectindent"]
 	path = .vim/bundle/detectindent
 	url = https://github.com/ciaranm/detectindent
+	branch = master
 [submodule ".vim/bundle/vim-coffee-script"]
 	path = .vim/bundle/vim-coffee-script
 	url = git@github.com:kchmck/vim-coffee-script.git
+	branch = master
