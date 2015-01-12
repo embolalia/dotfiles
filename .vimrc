@@ -97,6 +97,8 @@ nnoremap <space>q :q<cr>
 nnoremap <space>s :so $MYVIMRC<cr>
 " Run :make
 nnoremap <space>m :w<cr>:!clear<cr>:silent make %<cr>:cc<cr>
+nnoremap <space>. :cn<cr>
+nnoremap <space>, :cp<cr>
 " Move by 'display lines' rather than 'logical lines'.
 nnoremap <silent> j gj
 xnoremap <silent> j gj
@@ -124,7 +126,7 @@ nnoremap <space>N H$Nzb
 augroup python
     autocmd!
     " 'Compile' with pep8.
-    autocmd Filetype python setlocal makeprg=pep8\ --ignore=E501
+    autocmd Filetype python setlocal makeprg=pep8
     autocmd Filetype python setlocal errorformat=%f:%l:%c:%m
     " Execute.
     autocmd Filetype python nnoremap <buffer> <space>r :cd %:p:h<cr>:!python %<cr>
