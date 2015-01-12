@@ -159,6 +159,13 @@ say() {
     mplayer "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &> /dev/null 
 }
 
+# New Python virtualenv
+function mkenv() {
+    virtualenv --prompt=\($(basename $(pwd))\) env
+    source ./env/bin/activate
+}
+
+
 # ==============================================================================
 # = key bindings =
 # ==============================================================================
@@ -291,6 +298,16 @@ if [ -d "$HOME/lib" ] ; then
     export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
 fi
 
+# Fix SSH auth forwarding when reconnecting to tmux sessions
+# From http://qq.is/tutorial/2011/11/17/ssh-keys-through-screen.html
+SOCK="/tmp/ssh-agent-$USER-screen"
+if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
+then
+    rm -f /tmp/ssh-agent-$USER-screen
+    ln -sf $SSH_AUTH_SOCK $SOCK
+    export SSH_AUTH_SOCK=$SOCK
+fi
+
 # ------------------------------------------------------------------------------
 # - prompt (environmental variables) -
 # ------------------------------------------------------------------------------
@@ -338,6 +355,7 @@ alias yours="sudo find . -perm -u+x -exec chmod a+x {} \; && sudo find . -perm -
 
 # Activate the virtualenv for the current Python project
 alias venv="source ./env/bin/activate"
+alias activate="source ./env/bin/activate"
 
 # Remove pyc files
 alias rmpyc="find . -name '*.pyc' -exec rm {} \;"
@@ -490,7 +508,7 @@ fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 function pki () {
-    if test $VIRTUAL_ENV; then
+    if test $VIRTUAL_ENV || ! test $USERNAME = epowell; then
         pip install $@
     else
         sudo pip install $@
@@ -499,7 +517,7 @@ function pki () {
 
 function pkr () {
     if test $VIRTUAL_ENV; then
-        pip install $@
+        pip uninstall $@
     else
         sudo pip uninstall $@
     fi
