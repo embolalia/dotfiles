@@ -91,14 +91,19 @@ inoremap <f1> <esc>
 nnoremap <silent> <c-l> :nohlsearch<cr><c-l>
 " Faster mapping for saving
 nnoremap <space>w :w<cr>
+nnoremap <leader>w :w<cr>
 " Faster mapping for closing window / quitting
 nnoremap <space>q :q<cr>
+nnoremap <leader>q :q<cr>
 " Re-source the .vimrc
 nnoremap <space>s :so $MYVIMRC<cr>
+nnoremap <leader>s :so $MYVIMRC<cr>
 " Run :make
 nnoremap <space>m :w<cr>:!clear<cr>:silent make %<cr>:cc<cr>
 nnoremap <space>. :cn<cr>
+nnoremap <leader>. :cn<cr>
 nnoremap <space>, :cp<cr>
+nnoremap <leader>, :cp<cr>
 " Move by 'display lines' rather than 'logical lines'.
 nnoremap <silent> j gj
 xnoremap <silent> j gj
@@ -114,14 +119,11 @@ xnoremap <silent> gk k
 nnoremap <space>n L$nzt
 nnoremap <space>N H$Nzb
 
+map ; :
+noremap ;; ;
 
-" ==============================================================================
-" = filetype-specific_settings =
-" ==============================================================================
-
-" ------------------------------------------------------------------------------
-" - python_(filetype-specific) -
-" ------------------------------------------------------------------------------
+filetype plugin indent on
+nnoremap <leader>m :PymodeLint<return>
 
 augroup python
     autocmd!
