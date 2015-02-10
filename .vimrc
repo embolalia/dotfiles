@@ -125,6 +125,8 @@ noremap ;; ;
 filetype plugin indent on
 nnoremap <leader>m :PymodeLint<return>
 
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_regenerate_on_write = 0
 augroup python
     autocmd!
     " 'Compile' with pep8.

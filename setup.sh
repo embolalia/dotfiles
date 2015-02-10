@@ -15,6 +15,7 @@ mv $DIR ~/.dotfiles
 cd .dotfiles
 
 ./make_symlinks.sh
+git config --global core.excludesfile ~/.gitignore_global
 
 git submodule init
 git submodule update
