@@ -139,6 +139,13 @@ prepend-vim() {
 }
 zle -N prepend-vim
 
+
+# Remove command and prep to enter new one
+new-command() {
+    BUFFER=" ${BUFFER#* *}"
+    CURSOR=0
+}
+zle -N new-command
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # other custom functions
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -178,6 +185,9 @@ bindkey "^S" prepend-sudo
 
 # prepend vim
 bindkey "^V" prepend-vim
+
+# replace command
+bindkey "^G" new-command
 
 # Don't break insert/delete/etc. on some distros (COUGH FEDORA COUGH)
 typeset -A key
@@ -379,7 +389,11 @@ alias pbinf="$PASTEBINF"
 alias fman="$FILEMAN . 2> /dev/null"
 alias len="wc -l"
 alias mc="java -jar ~/prog/minecraft/minecraft.jar&exit"
-alias py="python"
+if which ipython &>/dev/null; then
+    alias py="ipython"
+else
+    alias py="python"
+fi
 alias py2="python2.7"
 alias py3="python3"
 alias ta="tmux attach"
