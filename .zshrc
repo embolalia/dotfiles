@@ -446,10 +446,20 @@ alias gw="git show"
 alias gco="git checkout"
 alias gm="git merge"
 alias gus="git push"
-alias guss='git push origin $(git branch | awk '\''/^\*/{print$2}'\'')'
 alias gul="git pull"
 alias gull='git pull origin $(git branch | awk '\''/^\*/{print$2}'\'')'
 
+function guss () {
+    branch=$(git branch | awk '/^\*/{print$2}')
+    if test $branch = master; then
+        read "?Really push to master? (y/[n]) " yn
+        if ! (test "$yn" = Y || test "$yn" = y); then
+            echo "Fucked up, din'cha?"
+            return
+        fi
+    fi
+    git push origin $branch
+}
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # package management
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
