@@ -73,6 +73,9 @@ CACHEDIR="$HOME/.zsh/$(uname -n)"
 autoload -U compinit
 compinit -d $CACHEDIR/zcompdump 2>/dev/null
 
+# Case insensitive
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
 # cache, speed things up
 zstyle ':completion:*' use-cache on
 
