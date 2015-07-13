@@ -119,7 +119,7 @@ zstyle ':completion:history-words:*' menu yes
 # Prepend "sudo" to the command line if it is not already there. If it's a vim
 # command, use sudoedit instead.
 prepend-sudo() {
-    if ! echo "$BUFFER" | grep -q "^sudo "
+    if ! echo "$BUFFER" | grep -q "^sudo " && ! echo "$BUFFER" | grep -q "^sudoedit"
     then
         if echo "$BUFFER" | grep -q "^vim "; then
             BUFFER="sudoedit ${BUFFER:4:${#BUFFER}}"
@@ -134,10 +134,15 @@ zle -N prepend-sudo
 
 # Prepend "vim" to the command line if it is not already there.
 prepend-vim() {
-    if ! echo "$BUFFER" | grep -q "^vim "
+    if ! echo "$BUFFER" | grep -q "^vim " && ! echo "$BUFFER" | grep -q "^sudoedit"
     then
-        BUFFER="vim $BUFFER"
-        CURSOR+=5
+        if echo "$BUFFER" | grep -q "^sudo "; then
+            BUFFER="sudoedit ${BUFFER:5:${#BUFFER}}"
+            CURSOR+=5
+        else
+            BUFFER="vim $BUFFER"
+            CURSOR+=5
+        fi
     fi
 }
 zle -N prepend-vim
