@@ -178,6 +178,7 @@ say() {
 function mkenv() {
     virtualenv --prompt=\($(basename $(pwd))\) env
     source ./env/bin/activate
+    pip install pip-accel
 }
 
 
@@ -416,6 +417,10 @@ alias .....="cd ../../../.."
 alias vv="cd /dev/shm/"
 alias pw="cd ~/prog/willie"
 alias prog="cd ~/prog"
+# If we don't have pip-accel, we are out of a virtualenv and can't install shit
+# globally anyway, so we don't want to use regular pip and this alias won't
+# break things
+alias pip="pip-accel"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Networking, ssh, remote drives, etc.
