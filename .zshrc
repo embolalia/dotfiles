@@ -465,6 +465,10 @@ alias gull='git pull origin $(git branch | awk '\''/^\*/{print$2}'\'')'
 function guss () {
     branch=$(git branch | awk '/^\*/{print$2}')
     if test $branch = master; then
+        if echo $@ | grep -q -- --force; then
+            echo "Force push to master? Yeah, no."
+            return
+        fi
         read "?Really push to master? (y/[n]) " yn
         if ! (test "$yn" = Y || test "$yn" = y); then
             echo "Fucked up, din'cha?"
