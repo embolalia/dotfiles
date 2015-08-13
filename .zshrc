@@ -458,7 +458,6 @@ alias gs="git status"
 alias gw="git show"
 alias gco="git checkout"
 alias gm="git merge"
-alias gus="git push"
 alias gul="git pull"
 alias gull='git pull origin $(git branch | awk '\''/^\*/{print$2}'\'')'
 
