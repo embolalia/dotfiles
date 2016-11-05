@@ -1,5 +1,6 @@
 # With great thanks and credit to Paradigm and his wonderfully crafted .zshrc
 # https://github.com/paradigm/dotfiles/blob/master/.zshrc
+alias ecr-login='$(~/env3/bin/aws ecr get-login --region us-east-1)'
 
 
 # Lines configured by zsh-newuser-install, minus those also set by Paradigm
@@ -175,16 +176,23 @@ say() {
 }
 
 # New Python virtualenv
-function mkenv() {
-    virtualenv --prompt=\($(basename $(pwd))\) env
-    source ./env/bin/activate
+function mkenv2() {
+    virtualenv --python=python2 --prompt=\($(basename $(pwd))-2\) env2
+    source ./env2/bin/activate
     pip install pip-accel
 }
 
+function mkenv3() {
+    virtualenv --python=python3 --prompt=\($(basename $(pwd))-3\) env3
+    source ./env3/bin/activate
+    pip3 install pip-accel
+}
 
 # ==============================================================================
 # = key bindings =
 # ==============================================================================
+
+bindkey -e
 
 # temporarily save line contents
 bindkey "^Y" push-line
@@ -312,6 +320,13 @@ fi
 if [ -d "$HOME/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
 fi
+# And virtualenvs
+if [ -d "$HOME/env3/bin" ] ; then
+    export PATH="$PATH:$HOME/env3/bin"
+fi
+if [ -d "$HOME/env2/bin" ] ; then
+    export PATH="$PATH:$HOME/env2/bin"
+fi
 
 if [ -d "$HOME/lib" ] ; then
     export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
@@ -374,7 +389,8 @@ alias yours="sudo find . -perm -u+x -exec chmod a+x {} \; && sudo find . -perm -
 
 # Activate the virtualenv for the current Python project
 alias venv="source ./env/bin/activate"
-alias activate="source ./env/bin/activate"
+alias venv2="source ./env2/bin/activate"
+alias venv3="source ./env3/bin/activate"
 
 # Remove pyc files
 alias rmpyc="find . -name '*.pyc' -exec rm {} \;"
@@ -420,7 +436,6 @@ alias prog="cd ~/prog"
 # If we don't have pip-accel, we are out of a virtualenv and can't install shit
 # globally anyway, so we don't want to use regular pip and this alias won't
 # break things
-alias pip="pip-accel"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Networking, ssh, remote drives, etc.
@@ -428,7 +443,6 @@ alias pip="pip-accel"
 
 alias hbd="sudo mount 192.168.1.22:/files /h"
 alias cse="ssh -X powelle@stdlinux.cse.ohio-state.edu"
-alias aws="ssh -X edward@54.235.244.4"
 alias osc="ssh -X embolalia@opensource.osu.edu"
 alias chunk="ssh -X embo@76.74.177.239"
 alias desktop="ssh -X embo@embolalia.com -p 1991"
