@@ -3,6 +3,7 @@
 alias ecr-login='$(~/env3/bin/aws ecr get-login --region us-east-1)'
 
 
+
 # Lines configured by zsh-newuser-install, minus those also set by Paradigm
 HISTFILE=~/.history
 HISTSIZE=1000
@@ -330,6 +331,12 @@ fi
 
 if [ -d "$HOME/lib" ] ; then
     export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+fi
+
+
+# Put AWS creds in environment
+if [ -x "$(which awsenv 2> /dev/null)" ]; then
+    eval $(awsenv)
 fi
 
 # Fix SSH auth forwarding when reconnecting to tmux sessions
