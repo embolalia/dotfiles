@@ -95,6 +95,11 @@ nnoremap <leader>w :w<cr>
 " Faster mapping for closing window / quitting
 nnoremap <space>q :q<cr>
 nnoremap <leader>q :q<cr>
+" System clipboard copy/paste
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
 " Re-source the .vimrc
 nnoremap <space>s :so $MYVIMRC<cr>
 nnoremap <leader>s :so $MYVIMRC<cr>
