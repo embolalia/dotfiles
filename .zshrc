@@ -328,6 +328,10 @@ fi
 if [ -d "$HOME/env2/bin" ] ; then
     export PATH="$PATH:$HOME/env2/bin"
 fi
+# And GNU coreutils on OSX
+if [ -x "$(which brew 2>/dev/null)" ]; then
+    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+fi
 
 if [ -d "$HOME/lib" ] ; then
     export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
