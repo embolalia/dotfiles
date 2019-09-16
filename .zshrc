@@ -317,20 +317,20 @@ else
     export PASTEBINF="echo \"You dont have a pastebin!\""
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    export PATH="$HOME/bin:$PATH"
-fi
-# And virtualenvs
-if [ -d "$HOME/env3/bin" ] ; then
-    export PATH="$PATH:$HOME/env3/bin"
-fi
-if [ -d "$HOME/env2/bin" ] ; then
-    export PATH="$PATH:$HOME/env2/bin"
-fi
-# And GNU coreutils on OSX
+# set PATH so it includes GNU coreutils on OSX
 if [ -x "$(which brew 2>/dev/null)" ]; then
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+fi
+# And virtualenvs
+if [ -d "$HOME/env2/bin" ] ; then
+    export PATH="$HOME/env2/bin:$PATH"
+fi
+if [ -d "$HOME/env3/bin" ] ; then
+    export PATH="$HOME/env3/bin:$PATH"
+fi
+# And, as the first choice, the user's own bin, if it exists
+if [ -d "$HOME/bin" ] ; then
+    export PATH="$HOME/bin:$PATH"
 fi
 
 if [ -d "$HOME/lib" ] ; then
