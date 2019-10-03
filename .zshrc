@@ -1,7 +1,5 @@
 # With great thanks and credit to Paradigm and his wonderfully crafted .zshrc
 # https://github.com/paradigm/dotfiles/blob/master/.zshrc
-alias ecr-login='$(~/env3/bin/aws ecr get-login --region us-east-1)'
-
 
 
 # Lines configured by zsh-newuser-install, minus those also set by Paradigm
@@ -21,9 +19,13 @@ compinit
 # = general settings =
 # ==============================================================================
 
+# Can be helpful to know which version of the major dotfiles was sourced
+export ZSHRC_VERSION="$(date -r ~/.zshrc)"
+
 # Include local .zshrc if extant
 if [[ -f "$HOME/.zshrc.local" ]] then
     source "$HOME/.zshrc.local"
+    export ZSHRC_VERSION="$ZSHRC_VERSION with .zshrc.local version $(date -r ~/.zshrc.local)"
 fi
 
 # cd into directory just by directory name
@@ -180,13 +182,13 @@ say() {
 function mkenv2() {
     virtualenv --python=python2 --prompt=\($(basename $(pwd))-2\) env2
     source ./env2/bin/activate
-    pip install pip-accel
+    pip install pip-accel ipython
 }
 
 function mkenv3() {
     virtualenv --python=python3 --prompt=\($(basename $(pwd))-3\) env3
     source ./env3/bin/activate
-    pip3 install pip-accel
+    pip3 install pip-accel ipython
 }
 
 # ==============================================================================
@@ -338,11 +340,6 @@ if [ -d "$HOME/lib" ] ; then
 fi
 
 
-# Put AWS creds in environment
-if [ -x "$(which awsenv 2> /dev/null)" ]; then
-    eval $(awsenv)
-fi
-
 # Fix SSH auth forwarding when reconnecting to tmux sessions
 # From http://qq.is/tutorial/2011/11/17/ssh-keys-through-screen.html
 SOCK="/tmp/ssh-agent-$USER-screen"
@@ -418,6 +415,9 @@ then
     alias vim="gvim -v"
     export EDITOR="gvim -v"
 fi
+
+# Expand aliases (but not functions) in watch
+alias watch='watch '
 
 alias ytdl="youtube-dl -o \"%(uploader)s-%(stitle)s.%(ext)s\""
 alias pbin="$PASTEBIN"
