@@ -1,0 +1,43 @@
+{
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["leader", "q"],
+            "commands": [
+                ":q",
+            ]
+        },
+        {
+            "before": ["leader", "w"],
+            "commands": [
+                "workbench.action.files.save"
+            ]
+        }
+    ],
+    "vim.useSystemClipboard": true,
+    "editor.lineNumbers": "relative",
+    "editor.rulers": [80, 100, 120],
+    "git.allowForcePush": true,
+    "files.exclude": {
+        "**/.egg-info": true,
+        "**/.ipython": true,
+        "**/*.pyc": true,
+        "**/**.swp": true,
+        "**/env": true,
+        "**/env[2-3]": true
+    },
+    "window.zoomLevel": 0,
+    "rewrap.wrappingColumn": 80,
+    "rewrap.autoWrap.enabled": true,
+    "editor.renderFinalNewline": false,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "editor.renderWhitespace": "boundary",
+    "files.trimTrailingWhitespace": true,
+    "python.showStartPage": false,
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ]
+}

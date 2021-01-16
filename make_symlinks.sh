@@ -7,3 +7,8 @@ for f in ./.* ; do
         echo "Skipped " $f
     fi
 done
+if test -d ~/Library
+then
+    mkdir -p ~/Library/Application\ Support/Code/User
+    ln -s vscode_settings.json ~/Library/Application\ Support/Code/User/settings.json
+fi
