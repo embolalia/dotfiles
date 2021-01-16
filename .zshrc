@@ -158,6 +158,17 @@ new-command() {
     CURSOR=0
 }
 zle -N new-command
+
+new-subcommand() {
+    # There's probably a cleaner way to do all this, but whatever
+    cmd="$BUFFER[(w)1]"
+    BUFFER="${BUFFER#* *}"
+    BUFFER="$cmd  ${BUFFER#* *}"
+    CURSOR=$(expr length $cmd)
+    CURSOR+=1
+}
+zle -N new-subcommand
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # other custom functions
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -208,6 +219,7 @@ bindkey "^V" prepend-vim
 
 # replace command
 bindkey "^G" new-command
+bindkey "^H" new-subcommand
 
 # Don't break insert/delete/etc. on some distros (COUGH FEDORA COUGH)
 typeset -A key
@@ -416,6 +428,11 @@ then
     export EDITOR="gvim -v"
 fi
 
+if ! which code &> /dev/null
+then
+    alias code="echo VSCode not installed or not in path"
+fi
+
 # Expand aliases (but not functions) in watch
 alias watch='watch '
 
@@ -477,7 +494,6 @@ alias cl="clive --format=best"
 
 alias gc="git commit -m"
 alias gb="git branch"
-alias gl="git log --graph --color | less -R"
 alias gr="git reset --hard HEAD"
 alias gs="git status"
 alias gw="git show"

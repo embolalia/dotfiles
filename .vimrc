@@ -93,8 +93,8 @@ nnoremap <silent> <c-l> :nohlsearch<cr><c-l>
 nnoremap <space>w :w<cr>
 nnoremap <leader>w :w<cr>
 " Faster mapping for closing window / quitting
-nnoremap <space>q :q<cr>
-nnoremap <leader>q :q<cr>
+nnoremap <space>q :qa<cr>
+nnoremap <leader>q :qa<cr>
 " System clipboard copy/paste
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
@@ -129,13 +129,15 @@ noremap ;; ;
 
 filetype plugin indent on
 nnoremap <leader>m :PymodeLint<return>
+" let g:pymode_options_max_line_length = 120
+let g:pymode_lint_options_pep8 = {'max_line_length': 80}
 
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_regenerate_on_write = 0
 augroup python
     autocmd!
     " 'Compile' with pep8.
-    autocmd Filetype python setlocal makeprg=~/env3/bin/flake8
+    autocmd Filetype python setlocal makeprg="~/env3/bin/flake8 --max-line-length=120"
     autocmd Filetype python setlocal errorformat=%f:%l:%c:%m
     " Execute.
     autocmd Filetype python nnoremap <buffer> <space>r :cd %:p:h<cr>:!python3 %<cr>
