@@ -17,20 +17,19 @@ for f in ./.* ; do
 done
 
 
+mkdir -p ~/.ssh
 winhome='/mnt/c/Users/Else'
 if test -d $winhome
 then
     vsc_dir=$winhome/Application\ Data/Code/User
-    ln -Tfs ~/.ssh $winhome/.ssh
+    ln -Tfs $(readlink -f ~/.ssh) $winhome/.ssh
 elif test -d ~/Library
 then
-    mkdir -p ~/.ssh
     vsc_dir=~/Library/Application\ Support/Code/User
 else
-    mkdir -p ~/.ssh
     vsc_dir="~/.config/Code/User"
 fi
-ln -fs ./ssh_config ~/.ssh/config
+ln -fs $(readlink -f ssh_config) ~/.ssh/config
 
 mkdir -p "$vsc_dir"
-ln -fs vscode_settings.json "$vsc_dir/settings.json"
+ln -fs $(readlink -f vscode_settings.json) "$vsc_dir/settings.json"
