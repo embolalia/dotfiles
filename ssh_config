@@ -1,26 +1,9 @@
-host desktop
-    hostname embolalia.net
-    user embo
-    port 1991
+host raspberrytau tau
+    hostname raspberrytau
+    user pi
 
-host chunk
-    hostname 76.74.177.239
-    user embo
-    port 22
-
-host cse
-    hostname stdlinux.cse.ohio-state.edu
-    user powelle
-    port 22
-
-host osc
-    hostname opensource.osu.edu
-    user embolalia
-    port 22
-
-host aws
-    hostname d.embolalia.net
-    user edward
-    port 22
+host smolpi
+    hostname smolpi
+    user pi
 
 NoHostAuthenticationForLocalhost yes
