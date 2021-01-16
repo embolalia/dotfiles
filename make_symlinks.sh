@@ -21,8 +21,7 @@ winhome='/mnt/c/Users/Else'
 if test -d $winhome
 then
     vsc_dir=$winhome/Application\ Data/Code/User
-    mkdir -p $winhome/.ssh
-    ln -Tfs $winhome/.ssh ~/.ssh
+    ln -Tfs ~/.ssh $winhome/.ssh
 elif test -d ~/Library
 then
     mkdir -p ~/.ssh

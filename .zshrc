@@ -362,6 +362,16 @@ then
     export SSH_AUTH_SOCK=$SOCK
 fi
 
+if which keychain &> /dev/null
+then
+    # For now, this is just for WSL
+    if ! test -e ~/.keychain/$HOST-sh
+    then
+        keychain --nogui ~/.ssh/windows_id_rsa
+    fi
+    source ~/.keychain/$HOST-sh
+fi
+
 # ------------------------------------------------------------------------------
 # - prompt (environmental variables) -
 # ------------------------------------------------------------------------------

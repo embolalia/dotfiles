@@ -23,3 +23,8 @@ if [ "sudo true" ]; then
 elif [ -n $(which zsh) ]; then
 	chsh -s /bin/zsh
 fi
+
+if test -e /mnt/c
+then
+	sudo $INSTALLER install -y keychain
+fi
