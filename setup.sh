@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 # Set up *everything*
 
 if [ -z $(which yum) ]; then
@@ -8,11 +8,6 @@ else
 	INSTALLER="yum"
 	PASTER="fpaste"
 fi
-
-DIR=$(cd "$(dirname $0)"; pwd)
-cd
-mv $DIR ~/.dotfiles
-cd .dotfiles
 
 ./make_symlinks.sh
 git config --global core.excludesfile ~/.gitignore_global
