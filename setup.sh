@@ -1,5 +1,7 @@
-#!/bin/sh -e
+#!/bin/sh -ev
 # Set up *everything*
+
+./make_symlinks.sh
 
 if [ -z $(which yum) ]; then
 	INSTALLER="apt-get"
@@ -9,11 +11,7 @@ else
 	PASTER="fpaste"
 fi
 
-./make_symlinks.sh
 git config --global core.excludesfile ~/.gitignore_global
-
-git submodule init
-git submodule update
 
 if [ "sudo true" ]; then
 	sudo $INSTALLER install -y zsh tmux vim $PASTER
@@ -24,7 +22,10 @@ elif [ -n $(which zsh) ]; then
 	chsh -s /bin/zsh
 fi
 
-if test -e /mnt/c
+if which wslinfo
 then
 	sudo $INSTALLER install -y keychain
 fi
+
+git submodule init
+git submodule update

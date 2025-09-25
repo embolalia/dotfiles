@@ -1,5 +1,16 @@
 #!/bin/bash -e
 echo "Making symlinks"
+
+if which wslpath && ! test $(wslpath $(wslvar USERPROFILE)) = $HOME; then
+    echo "ERROR: Set home to $(wslpath $(wslvar USERPROFILE)) in /etc/passwd, and log out and back in, first"
+    exit 1
+elif which wslpath; then
+    mkdir -p /home/.wsl/$USER/.ssh
+    ln -fs /home/.wsl/$USER/.ssh .ssh
+else
+    mkdir -p .ssh
+fi
+
 if which brew &> /dev/null
 then
     PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
@@ -16,8 +27,6 @@ for f in ./.* ; do
     fi
 done
 
-
-mkdir -p ~/.ssh
 winhome='/mnt/c/Users/Else'
 if test -d $winhome
 then
@@ -29,7 +38,12 @@ then
 else
     vsc_dir="~/.config/Code/User"
 fi
-ln -fs $(readlink -f ssh_config) ~/.ssh/config
+
+if which wslpath; then
+    cp ssh_config ~/.ssh/config
+else
+    ln -fs $(readlink -f ssh_config) ~/.ssh/config
+fi
 
 mkdir -p "$vsc_dir"
 ln -fs $(readlink -f vscode_settings.json) "$vsc_dir/settings.json"

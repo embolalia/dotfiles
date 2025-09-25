@@ -1,9 +1,1 @@
-host raspberrytau tau
-    hostname raspberrytau
-    user pi
-
-host smolpi
-    hostname smolpi
-    user pi
-
 NoHostAuthenticationForLocalhost yes
