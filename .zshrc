@@ -202,6 +202,16 @@ function mkenv3() {
     pip3 install pip-accel ipython
 }
 
+function refoot() {
+    from=$1
+    count=$2
+    file=$3
+    for i in $(seq 99 -1 $from);
+    do
+        sed -i -e 's/\[\^'$i'\]/[^'$(($i + $count))']/' $file
+    done
+}
+
 # ==============================================================================
 # = key bindings =
 # ==============================================================================
